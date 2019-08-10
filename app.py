@@ -2,13 +2,13 @@ from flask import Flask, Response
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def index():
-    return "Index!"
+    return 'Hello, World!'
 
 @app.route('/health')
 def health_check():
     return Response("", status = 200)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
