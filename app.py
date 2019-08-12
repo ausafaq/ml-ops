@@ -29,6 +29,25 @@ def train():
 
     return  jsonify({'accuracy' : round(clf.score(X, y) * 100, 2)})
 
+@app.route('/predict', methods=['POST'])
+def predict():
+    # make prediction from iris input object
+    X = request.get_json()
+    X = [[float(X['sepalLength']),
+          float(X['sepalWidth']),
+          float(X['petalLength']),
+          float(X['petalWidth'])]]
+
+    # load model
+    clf = joblib.load('model.pkl')
+    probabilities = clf.predict_proba(X)
+
+    response = ([{'name': 'Iris-Setosa', 'value': round(probabilities[0,0] * 100, 2)},
+                 {'name': 'Iris-Versicolor', 'value': round(probabilities[0,1] * 100, 2)},
+                 {'name': 'Iris-Virginica', 'value': round(probabilities[0,2] * 100, 2)}])
+
+    return response
+
 
 @app.route('/health')
 def health_check():
