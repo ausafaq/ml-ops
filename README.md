@@ -1,5 +1,5 @@
 # ml-ops
 
-Deploying ML Models with Flask and Docker
+### Deploying ML Models with Flask and Docker
 
-Start server with `python app.py` command on port 8081.
+`python app.py` to start server on port 8081.
